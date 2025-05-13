@@ -15,8 +15,12 @@
             }
             set
             {
-                _firstEdge = value;
-            } 
+                if (value > 0)
+                {
+                    _firstEdge = value;
+                }
+                else throw new Exception(); 
+            }
         }
         public double secondEdge
         {
@@ -26,7 +30,11 @@
             }
             set
             {
-                _secondEdge = value;
+                if (value > 0)
+                {
+                    _secondEdge = value;
+                }
+                else throw new Exception();
             }
         }
 
@@ -38,8 +46,47 @@
             }
             set
             {
-                _thirdEdge = value;
+                if (value > 0)
+                {
+                    _thirdEdge = value;
+                }
+                else throw new Exception();
             }
+        }
+
+        public Triangle(double firstEdge, double secondEdge, double thirdEdge)
+        {
+            //проверка существования треугольника: 1 сторона не должны быть больше/равна сумме остальных двух сторон и стороны не должны быть отрицательными
+            if (isFigureRight(firstEdge, secondEdge, thirdEdge))
+            {
+                this.firstEdge = firstEdge;
+                this.secondEdge = secondEdge;
+                this.thirdEdge = thirdEdge;
+            }
+            else throw new Exception();
+        }
+
+        static public bool isFigureRight(double firstEdge, double secondEdge, double thirdEdge)
+        {
+            if (firstEdge < 0 || secondEdge < 0 || thirdEdge < 0)
+            {
+                return false;
+            }
+
+            double maxEdge = Math.Max(thirdEdge, Math.Max(firstEdge, secondEdge));
+            if (maxEdge == thirdEdge)
+            {
+                if (thirdEdge >= firstEdge + secondEdge) return false;
+            }
+            else if (maxEdge == secondEdge)
+            {
+                if (firstEdge >= thirdEdge + secondEdge) return false;
+            }
+            else if (maxEdge == firstEdge)
+            {
+                if (secondEdge >= firstEdge + thirdEdge) return false;
+            }
+            return true;
         }
 
         public double countArea()

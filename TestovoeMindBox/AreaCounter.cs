@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TestovoeMindBox
 {
-    static class AreaCounter
+    public static class AreaCounter
     {
-        public static double AreaCount(IFigure figure)
+        public static double areaCount(IFigure figure)
         {
             double res = figure.countArea();
             return res;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestovoeMindBox
 {
-    interface IFigure
+    public interface IFigure
     {
         public double countArea();
     }

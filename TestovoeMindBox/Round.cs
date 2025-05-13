@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestovoeMindBox
 {
-    class Round : IFigure
+    public class Round : IFigure
     {
         private double _radius;
 
@@ -17,10 +17,21 @@ namespace TestovoeMindBox
                 return _radius; 
             }
             set 
-            { 
-                _radius = value; 
+            {
+                if (value >= 0)
+                {
+                    _radius = value;
+                }
+                else throw new Exception();
+                 //не знал что делать при отрицательном радиусе, поэтому просто выкинул ошибку
             }
         }
+
+        public Round(double radius)
+        {
+            this.radius = radius;
+        }
+
         public double countArea()
         {
             double res = Math.PI * Math.Pow(_radius, 2);
